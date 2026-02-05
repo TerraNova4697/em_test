@@ -22,7 +22,7 @@ EXPOSE 8080
 
 # HEALTHCHECK: in order to keep build small, use built-in utilities
 HEALTHCHECK CMD \
-    sh -c 'echo -e "GET / HTTP/1.1\r\nHost: backend\r\nX-Real-IP: 1.2.3.4\r\nX-Forwarded-For: 1.2.3.4\r\n\r\n" \
+    sh -c 'echo -e "GET / HTTP/1.1\r\nHost: backend\r\nX-Real-IP: $(hostname -i)\r\nX-Forwarded-For: $(hostname -i)\r\n\r\n" \
            | nc backend 8080 \
            | grep -q "Hello from Effective Mobile" \
            || exit 1'

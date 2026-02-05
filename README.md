@@ -55,11 +55,21 @@ docker compose up -d
     ./tests/test_service.sh
     ```
 
-Либо просто
+    Либо просто
 
-```bash
-curl http://localhost
-```
+    ```bash
+    curl http://localhost
+    ```
+
+3. Проверить health:
+
+    ```bash
+    docker inspect --format='{{json .State.Health}}' nginx
+    ```
+
+    ```bash
+    docker inspect --format='{{json .State.Health}}' backend
+    ```
 
 ### Архитектура (текстовая схема)
 
