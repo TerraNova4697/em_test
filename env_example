@@ -1,0 +1,4 @@
+# no need for env variables so far
+
+# useful if we use some more advanced backend :)
+API_KEY=change_me
