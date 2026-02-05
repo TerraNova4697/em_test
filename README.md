@@ -7,34 +7,12 @@
 - **backend** — HTTP-сервер на Python, который возвращает текст `Hello from Effective Mobile!`
 - **nginx** — обратный прокси, который принимает HTTP-запросы и перенаправляет их на backend
 
-### Архитектура (текстовая схема)
-
-[Client] ---> [Nginx] ---> [Backend]
-
-- Клиент отправляет HTTP-запрос на Nginx (порт 80)
-- Nginx проксирует запрос на backend, добавляя необходимые заголовки
-- Backend возвращает текст, Nginx отдаёт его клиенту
-- HEALTHCHECK проверяет, что оба сервиса живы и функционикуют (nginx - нужный порт слушает, backend - отдает правильный текст)
-
----
-
-## Используемые технологии
-
-- Docker, Docker Compose
-- Python 3.12 (backend)
-- Nginx (обратный прокси)
-- Alpine Linux
-- Bash для healthcheck
-- PowerShell (для Windows healthcheck, при необходимости)
-
----
-
-## Инструкция по запуску
+### Инструкция по запуску
 
 1. Клонируем репозиторий:
 
     ```bash
-    git clone <URL_REPO> && cd <project_folder>
+    git clone git@github.com:TerraNova4697/em_test.git && cd em_test
     ```
 
 2. Подготовка окружения (если .env файла еще нет):
@@ -63,7 +41,7 @@
 docker compose up -d 
 ```
 
-## Проверка работоспособности
+### Проверка работоспособности
 
 1. Сделать скрипт проверки исполняемым
 
@@ -76,3 +54,27 @@ docker compose up -d
     ```bash
     ./tests/test_service.sh
     ```
+
+### Архитектура (текстовая схема)
+
+[Client] ---> [Nginx] ---> [Backend]
+
+Nginx и Backend работают в закрытой сети. В nginx пробрасывается 80 порт. Backend недоступен извне.
+
+- Клиент отправляет HTTP-запрос на Nginx (порт 80)
+- Nginx проксирует запрос на backend, добавляя необходимые заголовки
+- Backend возвращает текст, Nginx отдаёт его клиенту
+- HEALTHCHECK проверяет, что оба сервиса живы и функционикуют (nginx - нужный порт слушает, backend - отдает правильный текст)
+
+---
+
+### Используемые технологии
+
+- Docker, Docker Compose
+- Python 3.12 (backend)
+- Nginx (обратный прокси)
+- Alpine Linux
+- Bash для healthcheck
+- PowerShell (для Windows healthcheck, при необходимости)
+
+---
