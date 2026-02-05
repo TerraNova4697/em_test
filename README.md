@@ -55,6 +55,12 @@ docker compose up -d
     ./tests/test_service.sh
     ```
 
+Либо просто
+
+```bash
+curl http://localhost
+```
+
 ### Архитектура (текстовая схема)
 
 [Client] ---> [Nginx] ---> [Backend]
@@ -75,6 +81,5 @@ Nginx и Backend работают в закрытой сети. В nginx про�
 - Nginx (обратный прокси)
 - Alpine Linux
 - Bash для healthcheck
-- PowerShell (для Windows healthcheck, при необходимости)
 
 ---
